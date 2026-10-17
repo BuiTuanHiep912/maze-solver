@@ -76,3 +76,20 @@ class MazeSolver:
 
         return []
 
+    def solve_bfs(
+        self, start: tuple[int, int], goal: tuple[int, int]
+    ) -> list[tuple[int, int]]:
+        """TODO: Implement Breadth-First Search (BFS)."""
+        raise NotImplementedError("Not implement solve_bfs()")
+
+    def solve_dfs(
+        self, start: tuple[int, int], goal: tuple[int, int]
+    ) -> list[tuple[int, int]]:
+        """TODO: Implement Depth-First Search (DFS)."""
+        raise NotImplementedError("Not implement solve_dfs()")
+
+    def solve_astar(
+        self, start: tuple[int, int], goal: tuple[int, int]
+    ) -> list[tuple[int, int]]:
+        """TODO (Teammate 3): Implement A* Search."""
+        raise NotImplementedError("Not implement solve_astar()")
