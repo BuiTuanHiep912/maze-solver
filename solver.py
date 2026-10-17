@@ -25,8 +25,7 @@ class MazeSolver:
                 and 0 <= ny < self.width
                 and self.maze.get((nx, ny)) == MazeGenerator.EMPTY
             ):
-                neighbors.append(
-                                 )
+                neighbors.append((nx, ny))
         return neighbors
 
     def reconstruct_path(
