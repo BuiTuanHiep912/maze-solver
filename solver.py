@@ -108,8 +108,31 @@ class MazeSolver:
     def solve_dfs(
         self, start: tuple[int, int], goal: tuple[int, int]
     ) -> list[tuple[int, int]]:
-        """TODO: Implement Depth-First Search (DFS)."""
-        raise NotImplementedError("Not implement solve_dfs()")
+        """Solves the maze using Depth-First Search (DFS)."""
+        if (self.maze.get(start) != MazeGenerator.EMPTY
+                or self.maze.get(goal) != MazeGenerator.EMPTY):
+            return []
+
+        stack = [start]
+        came_from: dict[tuple[int, int], tuple[int, int]] = {}
+        visited = set()
+
+        while stack:
+            current = stack.pop()
+
+            if current in visited:
+                continue
+            visited.add(current)
+
+            if current == goal:
+                return self.reconstruct_path(came_from, current)
+
+            for neighbor in self.get_neighbors(current):
+                if neighbor not in visited:
+                    came_from[neighbor] = current
+                    stack.append(neighbor)
+
+        return []
 
     def solve_astar(
         self, start: tuple[int, int], goal: tuple[int, int]
