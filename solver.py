@@ -2,6 +2,7 @@ import heapq
 
 from maze import MazeGenerator
 
+from collections import deque
 
 class MazeSolver:
 
@@ -75,11 +76,34 @@ class MazeSolver:
 
         return []
 
+    
     def solve_bfs(
         self, start: tuple[int, int], goal: tuple[int, int]
     ) -> list[tuple[int, int]]:
-        """TODO: Implement Breadth-First Search (BFS)."""
-        raise NotImplementedError("Not implement solve_bfs()")
+        if (
+            self.maze.get(start) != MazeGenerator.EMPTY
+            or self.maze.get(goal) != MazeGenerator.EMPTY
+        ):
+            return []
+    
+        queue = deque([start])
+        visited = {start}
+        came_from: dict[tuple[int, int], tuple[int, int]] = {}
+    
+        while queue:
+            current = queue.popleft()
+    
+            if current == goal:
+                return self.reconstruct_path(came_from, current)
+    
+            for neighbor in self.get_neighbors(current):
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    came_from[neighbor] = current
+                    queue.append(neighbor)
+    
+        return []
+
 
     def solve_dfs(
         self, start: tuple[int, int], goal: tuple[int, int]

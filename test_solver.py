@@ -50,7 +50,6 @@ class TestMazeProject(unittest.TestCase):
         self.assertEqual(self.solver.solve_greedy_bfs((0, 0), self.goal), [])
         self.assertEqual(self.solver.solve_greedy_bfs(self.start, (0, 0)), [])
 
-    @unittest.skip("Uncomment when Teammate 1 finishes BFS")
     def test_bfs_valid_path(self):
         path = self.solver.solve_bfs(self.start, self.goal)
         self.assertValidPath(path, self.start, self.goal)
